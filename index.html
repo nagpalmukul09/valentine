@@ -94,12 +94,12 @@
       noBtn.style.left = `${x}px`;
       noBtn.style.top = `${y}px`;
 
-      // pick a random message
+      // pick a new random message EVERY time
       const randomMsg = messages[Math.floor(Math.random() * messages.length)];
       message.textContent = randomMsg;
     }
 
-    // Trigger every time she hovers over NO
+    // Trigger EVERY time she hovers over NO
     noBtn.addEventListener("mouseenter", moveNoButton);
 
     // YES button click
