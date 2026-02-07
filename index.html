@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Will You Be My Valentine?</title>
+
   <style>
     body {
       height: 100vh;
@@ -11,29 +12,30 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      font-family: Arial, sans-serif;
+      font-family: "Arial", sans-serif;
       background-color: #ffe6f0;
-      transition: background 0.6s ease;
       background-size: cover;
       background-position: center;
+      transition: background 0.8s ease;
     }
 
     h1 {
       color: #ff4d88;
       margin-bottom: 30px;
+      text-align: center;
     }
 
     .buttons {
       position: relative;
-      width: 300px;
-      height: 150px;
+      width: 320px;
+      height: 160px;
     }
 
     button {
-      padding: 12px 24px;
+      padding: 14px 30px;
       font-size: 18px;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
       position: absolute;
     }
@@ -45,30 +47,33 @@
     }
 
     #noBtn {
-      background-color: #999;
+      background-color: #888;
       color: white;
       right: 40px;
     }
 
     #message {
-      margin-top: 25px;
-      font-size: 22px;
-      color: #fff;
-      text-shadow: 1px 1px 4px black;
+      margin-top: 35px;
+      font-size: 40px;
+      font-weight: bold;
+      color: #ffeb3b;
+      text-align: center;
+      text-shadow: 3px 3px 12px black;
       display: none;
     }
   </style>
 </head>
+
 <body>
 
-  <h1>Pranchal (Sweeto 💕), will you be my Valentine?</h1>
+  <h1 id="question">Pranchal (Sweeto 💕), will you be my Valentine?</h1>
 
   <div class="buttons">
     <button id="yesBtn">YES</button>
     <button id="noBtn">NO</button>
   </div>
 
-  <div id="message">Yay! 💖</div>
+  <div id="message"></div>
 
   <script>
     const noBtn = document.getElementById("noBtn");
@@ -81,31 +86,36 @@
       "Keep dreaming 😎",
       "Almost… but no 😆",
       "Sweeto, you know the answer 💕",
-      "Error 404: No not found 😝"
+      "Error 404: No not found 😝",
+      "You really thought 😭",
+      "This button is broken 😂"
     ];
 
+    // NO button troll loop
     noBtn.addEventListener("mouseenter", () => {
-      // random message every hover
       const randomMsg = messages[Math.floor(Math.random() * messages.length)];
       noBtn.textContent = randomMsg;
 
-      // move button randomly
-      const x = Math.random() * 200 - 100;
+      const x = Math.random() * 220 - 110;
       const y = Math.random() * 120 - 60;
       noBtn.style.transform = `translate(${x}px, ${y}px)`;
     });
 
     noBtn.addEventListener("mouseleave", () => {
-      // reset back to NO every time
       noBtn.textContent = "NO";
       noBtn.style.transform = "translate(0, 0)";
     });
 
+    // YES button magic
     document.getElementById("yesBtn").addEventListener("click", () => {
       document.body.style.backgroundImage = "url('us.jpg')";
-      document.getElementById("message").style.display = "block";
-      document.getElementById("message").textContent =
-        "YAYYY 💖 I knew it, Sweeto!";
+
+      document.getElementById("question").style.display = "none";
+      document.querySelector(".buttons").style.display = "none";
+
+      const msg = document.getElementById("message");
+      msg.style.display = "block";
+      msg.innerHTML = "YAYYY 💖<br>I knew it, Sweeto!";
     });
   </script>
 
